@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Megaproyecto Luca</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/blood.css">
+		<link rel="stylesheet" href="./styles.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,7 +17,11 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
+				<section>				
+					<p class="subTitle">Traspaso inmediato, inteligente, verificable y seguro de títulos de propiedad usando <em>Blockchain</em> y <em>NFTs</em></p>
+					<h4>Diseño e implementación de la tecnología de <em>Blockchain</em> y Web3 por medio de <em>smart contracts</em> y <em>NFTs</em></h4>
+					<small>Gian Luca Rivera Biagioni</small>
+				</section>
 				<section>Slide 2</section>
 				<section>Slide 3</section>
 			</div>
@@ -37,5 +42,33 @@
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>
+		<!-- Script for particles.js -->
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2/tsparticles.move.base.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2/tsparticles.shape.circle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2/tsparticles.updater.color.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2/tsparticles.updater.opacity.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2/tsparticles.updater.out-modes.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2/tsparticles.updater.size.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.min.js"></script>
+		<script>
+			(async () => {
+				await loadStarsPreset(tsParticles); // this is required only if you are not using the bundle script
+
+				await tsParticles.load("tsparticles", {
+					preset: "stars",
+				});
+			})();
+		</script>
+		<!-- <script>
+			tsParticles.load("tsparticles", {
+				particles: {
+					shape: {
+					type: "square", // starting from v2, this require the square shape script
+					},
+				},
+				preset: "stars",
+			});
+		</script> -->
 	</body>
 </html>
