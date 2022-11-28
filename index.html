@@ -150,6 +150,12 @@
 				<section>
 					<h2>Smart contract</h2>
 				</section>
+				<!-- Diseño -->
+				<section>
+					<h3>Diseño</h3>
+					<img src="assets/disSC.png" height="600px"/>
+				</section>
+
 				<!-- VestaDNA.sol -->
 				<section data-auto-animate>
 					<h2 data-id="code-title">VestaDNA</h2>
@@ -298,6 +304,112 @@
 					</code></pre>
 				</section>
 
+				<!-- Testing -->
+				<section>
+					<section>
+						<h3>Testing</h3>
+						<img src="assets/tests.png" />
+					</section>
+					<section>
+						<h3>Mythril</h3>
+						<img src="assets/myth.png" style="margin-top: -30px";/>
+					</section>
+				</section>
+
+				<!-- Deploy -->
+				<section>
+					<h3>Deploy</h3>
+					<img src="assets/infura.png" width="500px"/>
+				</section>
+				<section>
+					<section>
+						<img src="assets/infuraDash.png"/>
+					</section>
+					<section>
+						<img src="assets/infuraVe.png"/>
+					</section>
+				</section>
+
+				<!-- Explorador de bloques -->
+				<section>
+					<h3>Exploradores de bloques</h3>
+					<div class="r-vstack justify-center" style="margin-top: 90px;">
+						<img src="assets/logo-snowtrace.svg" width="540px"/>
+						<img src="assets/logo-etherscan.svg" />
+					</div>
+				</section>
+				<section>
+					<section>
+						<!-- <h3>Deploy / Infura</h3> -->
+						<img src="assets/etherscan.png" />
+					</section>
+					<section>
+						<!-- <h3>Deploy / Infura</h3> -->
+						<img src="assets/snowtrace.png" />
+					</section>
+				</section>
+				<section>
+					<h3>Contrato verificado</h3>
+					<img src="assets/ethScanVer.png" style="margin-top: -30px;" />
+				</section>
+				<section>
+					<h3>Leer contrato</h3>
+					<img src="assets/ethScanRead.png" style="margin-top: -30px;" />
+				</section>
+				<section>
+					<h3>Escribir contrato</h3>
+					<img src="assets/ethScanWrite.png" style="margin-top: -30px;" />
+				</section>
+
+				<!-- NFT Marketplaces -->
+				<section>
+					<h3>Visualización NFT</h3>
+					<div class="r-vstack justify-center" style="margin-top: 60px;">
+						<img src="assets/rarible-logo.png" width="400px"/>
+						<img src="assets/opensea-logo.png" width="600px"/>
+					</div>
+				</section>
+				<section>
+					<section>
+						<img src="assets/raribleItem.png" />
+					</section>
+					<section>
+						<img src="assets/raribleMeta.png" height="600px"/>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img src="assets/openSeaItem.png" />
+					</section>
+					<section>
+						<img src="assets/openSeaMeta.png" height="600px"/>
+					</section>
+				</section>
+
+				<!-- Monitoreo -->
+				<section>
+					<h3>Monitoreo</h3>
+					<br />
+					<img src="assets/tenderly-logo.svg" width="400px"/>
+				</section>
+				<section>
+					<section>
+						<h4>Transacciones</h4>
+						<img src="assets/tenderlyTrans.png" style="margin: -20px;"/>
+					</section>
+					<section>
+						<h4>Alertas</h4>
+						<div class="r-vstack justify-center" style="margin: -35px;">
+							<img src="assets/tenderlyAlerts.png" width="700px"/>
+							<img src="assets/tenderlySlack.png" width="500px" style="margin: -40px;"/>
+						</div>
+					</section>
+					<section>
+						<h4>Simulaciones</h4>
+						<img src="assets/tenderlySim.png" style="margin: -20px;"/>
+					</section>
+				</section>
+
 				<section data-background-iframe="http://vesta.f-rosal.com" data-preload>
 					<!-- <iframe src="http://vesta.f-rosal.com" width="100%", height="1600"></iframe> -->
 					<!-- Resultados -->
@@ -323,6 +435,7 @@
 		</div>
 
 		<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
@@ -334,7 +447,7 @@
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealZoom, RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>
 		<!-- Script for particles.js -->
