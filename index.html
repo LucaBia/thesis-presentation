@@ -92,10 +92,10 @@
 					<h3>Administración del proyecto</h3>
 					<div class="r-hstack justify-center">
 						<div data-id="box1" data-auto-animate-delay="0" style="background: cyan; width: 400px; height: 100px; margin: 10px; border-radius: 5px; padding-bottom: 30px;">
-							<img src="/assets/GitHub-Logo.png" />
+							<img src="assets/GitHub-Logo.png" />
 						</div>
 						<div data-id="box2" data-auto-animate-delay="0.1" style="background: magenta; width: 400px; height: 100px; margin: 10px; border-radius: 5px; padding-bottom: 30px;">
-							<img src="/assets/Slack-logo.png" />
+							<img src="assets/Slack-logo.png" />
 						</div>
 					</div>
 				</section>
@@ -124,7 +124,178 @@
 				</section>
 
 				<section>
-					
+					<h2>UI/UX</h2>
+				</section>
+
+				<section>
+					<img src="/assets/upComprador.png" />
+				</section>
+
+				<section>
+					<img src="/assets/upVendedor.png" />
+				</section>
+
+				<section>
+					<img src="/assets/ujComprador.png" />
+				</section>
+
+				<section>
+					<img src="/assets/ujVendedor.png" />
+				</section>
+
+				<section>
+					<img src="/assets/arqInformacion.png" />
+				</section>
+
+				<section>
+					<h2>Smart contract</h2>
+				</section>
+				<!-- VestaDNA.sol -->
+				<section data-auto-animate>
+					<h2 data-id="code-title">VestaDNA</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						pragma solidity ^0.8.0;
+
+						contract VestaDNA {
+							struct House{
+								...
+							}
+						}
+					</code></pre>
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">VestaDNA</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|4-16|18|20-36|38-41">
+						pragma solidity ^0.8.0;
+
+						contract VestaDNA {
+							struct House{
+								string image;
+								string typology;
+								uint256 yearBuilt;
+								uint256 sqm;
+								uint256 rooms;
+								uint256 bathrooms;
+								uint256 levels;
+								uint256 parkings;
+								bool yard;
+								bool pool;
+								string location;
+							}
+
+							House[] public registered_house; 
+
+							function set_house_detail(string memory image,...) public {
+								registered_house.push(
+									House(
+										image,
+										typology,
+										yearBuilt,
+										sqm,
+										rooms,
+										bathrooms,
+										levels,
+										parkings,
+										yard,
+										pool,
+										location
+									)
+								);
+							}
+
+							function get_house(uint i) public view returns(string memory, string memory, uint256, uint256, uint256, uint256, uint256, uint256, bool, bool, string memory) {
+								House storage house = registered_house[i];
+								return (house.image, house.typology, house. yearBuilt, house.sqm, house.rooms, house.bathrooms, house.levels, house.parkings, house.yard, house.pool, house.location);
+							}
+						}
+					</code></pre>
+				</section>
+
+				<!-- Vesta.sol -->
+				<section data-auto-animate>
+					<h2 data-id="code-title">Vesta</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						pragma solidity ^0.8.0;
+
+						import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+						import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+						import "@openzeppelin/contracts/utils/Counters.sol";
+						import "./Base64.sol";
+						import "./VestaDNA.sol";
+
+						contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
+							...
+						}
+					</code></pre>
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Vesta</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|3-7|15|17-23|29-43|46|49-54|56-63">
+						pragma solidity ^0.8.0;
+
+						import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+						import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+						import "@openzeppelin/contracts/utils/Counters.sol";
+						import "./Base64.sol";
+						import "./VestaDNA.sol";
+
+						contract Vesta is ERC721, ERC721Enumerable, VestaDNA {
+							using Counters for Counters.Counter;
+							using Strings for uint256;
+
+							Counters.Counter private _tokenIdCounter;
+
+							constructor() ERC721("Vesta", "V") {}
+
+							function mint() public returns(uint256) {
+								uint256 tokenId = _tokenIdCounter.current();
+								_tokenIdCounter.increment();
+								_safeMint(msg.sender, tokenId);
+
+								return tokenId;
+							}
+
+							function boolToString(bool _b) public pure returns (string memory) {
+								return (_b ? 'Yes' : 'No');
+							}
+
+							function tokenURI(uint256 tokenId) public view override returns(string memory) {
+								(string memory image, ...) = get_house(tokenId);
+
+								string memory jsonURI = Base64.encode(
+									bytes(
+										string(
+											abi.encodePacked(
+												'{"name":"', "Vesta #", 
+												tokenId.toString(),
+												'","description":"', "Vesta is a property tokenization platform, represented as NFTs that live on the blockchain for easy transfer of ownership.",
+												'","image":"', a,
+												'","attributes":[{"trait_type":"Typology","value":"', aa, '"},{"trait_type": "Year built","value":"', b.toString(), '"},{"trait_type": "Square meters","value":"', c.toString(), '"},{"trait_type": "Rooms","value":"', d.toString(), '"},{"trait_type": "Bathrooms","value":"', e.toString(), '"},{"trait_type": "Levels","value":"', f.toString(), '"},{"trait_type": "Parkings","value":"', g.toString(), '"},{"trait_type": "Yard","value":"',  boolToString(h), '"},{"trait_type": "Pool","value":"',  boolToString(i), '"},{"trait_type": "Location","value":"', j, '"}]}'
+											)
+										)
+									)
+								);
+
+								return string(abi.encodePacked("data:application/json;base64,", jsonURI));
+							}
+
+							function _beforeTokenTransfer(address from, address to, uint256 tokenId)
+								internal
+								override(ERC721, ERC721Enumerable)
+							{
+								super._beforeTokenTransfer(from, to, tokenId);
+							}
+
+							function supportsInterface(bytes4 interfaceId)
+								public
+								view
+								override(ERC721, ERC721Enumerable)
+								returns (bool)
+							{
+								return super.supportsInterface(interfaceId);
+							}
+						}
+					</code></pre>
 				</section>
 
 				<section data-background-iframe="http://vesta.f-rosal.com" data-preload>
